@@ -9,37 +9,35 @@ todoListArray.forEach((value) => {
   paintTodo(value);
 });
 
-function createBtnWithDeleteFunction() {
+todoForm.addEventListener("submit", (e) => {
+  const todoText = todoInput.value;
+  const todoId = Date.now();
+  const todo = { id: todoId, text: todoText };
+  e.preventDefault();
+  paintTodo(todo);
+  todoInput.value = "";
+  todoListArray.push(todo);
+  localStorage.setItem("todoList", JSON.stringify(todoListArray));
+});
+
+function createBtnWithDeleteFunction(todo) {
   const btn = document.createElement("button");
   btn.innerText = "❌";
   btn.addEventListener("click", (event) => {
-    console.log(event);
     event.target.parentElement.remove();
-    todoListArray.splice(
-      todoListArray.indexOf(btn.previousSibling.innerText),
-      1
-    );
+    todoListArray.splice(todoListArray.indexOf(todo), 1);
     localStorage.setItem("todoList", JSON.stringify(todoListArray));
   });
   return btn;
 }
 
-function paintTodo(todoText) {
+function paintTodo(todoObj) {
   const todo = document.createElement("li");
   const span = document.createElement("span");
-  span.innerText = todoText;
-  const btn = createBtnWithDeleteFunction();
+  span.innerText = todoObj.text;
+  const btn = createBtnWithDeleteFunction(todoObj);
 
   todo.appendChild(span);
   todo.appendChild(btn);
   todoList.appendChild(todo);
 }
-
-todoForm.addEventListener("submit", (e) => {
-  const todoText = todoInput.value;
-  e.preventDefault();
-  paintTodo(todoText, todoListArray.length);
-  todoInput.value = "";
-  todoListArray.push(todoText);
-  localStorage.setItem("todoList", JSON.stringify(todoListArray));
-});
