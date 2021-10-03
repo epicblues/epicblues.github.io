@@ -28,7 +28,7 @@ getWeather()
     const lat = locations.latitude;
     const long = locations.longitude;
     return fetch(
-      `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=52befdc897be5ce9cb87e3d1fd0074b2`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=52befdc897be5ce9cb87e3d1fd0074b2`
     );
   })
   .then((data) => data.json())

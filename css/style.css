@@ -12,10 +12,14 @@
 }
 
 .container > * {
-  border: 3px solid red;
-  background-color: beige;
+  background-color: rgb(197, 245, 165);
   width: 50vh;
   align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: space-around;
+  justify-items: center;
 }
 
 img {
@@ -23,6 +27,18 @@ img {
   top: 0px;
   left: 0px;
   z-index: -59;
+  width: 120%;
+  height: 120%;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  margin-right: 20px;
+  margin-left: 50px;
 }
 
 .todo-list {
