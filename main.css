@@ -1,0 +1,33 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 300px;
+}
+
+#main > *,
+#arrows > *,
+#target > * {
+  margin-top: 25px;
+  font-size: x-large;
+}
+
+#shuffle {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  /* height: 150px; */
+}
+#shuffle > button {
+  font-size: x-large;
+  max-height: fit-content;
+  padding: 10px;
+}

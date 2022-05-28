@@ -5,33 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <style>
-      .container {
-        display: flex;
-        justify-content: space-between;
-        font-size: xx-large;
-        margin-left: 10%;
-        margin-right: 10%;
-      }
-
-      #main > *,
-      #arrows > *,
-      #target > * {
-        margin-top: 25px;
-      }
-
-      #shuffle {
-        margin-top: 20%;
-        display: flex;
-        justify-content: center;
-        height: 150px;
-      }
-      #shuffle > button {
-        font-size: xx-large;
-        width: 50%;
-        height: 50%;
-      }
-    </style>
+    <link rel="stylesheet" href="main.css" />
   </head>
   <body>
     <h1>코드 리뷰</h1>
@@ -45,80 +19,5 @@
     </div>
   </body>
 
-  <script>
-    const shuffle = (target = []) => {
-      let buffer = [];
-      let table = [];
-      let secondaryTable = [];
-      let checkedCount = 0;
-      for (i = 0; i < target.length; i++) {
-        table.push(false);
-        secondaryTable.push(Number.MAX_SAFE_INTEGER);
-      }
-
-      while (buffer.length < target.length) {
-        const nextIndex = Math.floor(Math.random() * target.length);
-        if (nextIndex === checkedCount && target.length - buffer.length === 1) {
-          buffer = [];
-          table = [];
-          secondaryTable = [];
-          checkedCount = 0;
-          for (i = 0; i < target.length; i++) {
-            table.push(false);
-            secondaryTable.push(Number.MAX_SAFE_INTEGER);
-          }
-          continue;
-        }
-        if (nextIndex === checkedCount) continue;
-        if (secondaryTable[checkedCount] === nextIndex) continue;
-        if (table[nextIndex]) continue;
-        secondaryTable[nextIndex] = checkedCount;
-        checkedCount++;
-        table[nextIndex] = true;
-        buffer.push(target[nextIndex]);
-      }
-
-      return buffer;
-    };
-
-    class Component {
-      constructor(name) {
-        this.name = name;
-      }
-
-      toElement() {
-        const element = document.createElement("div");
-        element.innerText = this.name;
-        return element;
-      }
-    }
-
-    const names = "민성,현정,한빈,훈기,민재".split(",");
-
-    const body = document.querySelector("#main");
-    const targetNode = document.querySelector("#target");
-    const arrowNode = document.querySelector("#arrows");
-
-    const components = names
-      .map((name) => new Component(name).toElement())
-      .forEach((node) => body.appendChild(node));
-
-    const button = document.querySelector("#shuffle");
-    button.style.visibility = "visible";
-    button.addEventListener("click", () => {
-      if (arrowNode.children.length === 0) {
-        for (let i = 0; i < names.length; i++) {
-          const arrow = document.createElement("div");
-          arrow.innerHTML = "====>";
-          arrowNode.appendChild(arrow);
-        }
-      }
-
-      targetNode.innerHTML = "";
-      const shuffledElements = shuffle(names);
-      const shuffledComponents = shuffledElements
-        .map((name) => new Component(name).toElement())
-        .forEach((node) => targetNode.appendChild(node));
-    });
-  </script>
+  <script src="./main.js"></script>
 </html>
