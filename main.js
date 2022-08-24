@@ -45,7 +45,7 @@ class Component {
   }
 }
 
-const names = "민성,현정,한빈,훈기,민재".split(",");
+const names = "민성,수빈,민환,예림,민재,한빈".split(",");
 
 const body = document.querySelector("#main");
 const targetNode = document.querySelector("#target");
